@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
+@theme {
+  /* ── Colors ── */
+  --color-bg: #07111D;
+  --color-surface: #0D1A2E;
+  --color-elevated: #122238;
+  --color-border: #1A2E46;
+
+  --color-coral: #FF5C3E;
+  --color-coral-hover: #E84B2D;
+  --color-gold: #EDA52A;
+  --color-teal: #00B8A4;
+
+  --color-cream: #EDE8DF;
+  --color-cream-dim: #B8B0A5;
+  --color-muted: #5C7A96;
+
+  /* ── Fonts ── */
+  --font-display: var(--font-syne), sans-serif;
+  --font-body: var(--font-dm-sans), sans-serif;
+}
+
+/* ── Base ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: #07111D;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #07111D;
+  color: #EDE8DF;
+  font-family: var(--font-dm-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Focus rings (WCAG AA) ── */
+*:focus-visible {
+  outline: 2px solid #EDE8DF;
+  outline-offset: 4px;
+}
+
+/* ── Anchor scroll offset (compensates sticky navbar) ── */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ── Custom cursor ── */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #FF5C3E;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* ── Reduced motion fallback ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 200ms !important;
+    transition-property: color, background-color, opacity !important;
+  }
+}
+
+/* ── Select arrow reset ── */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235C7A96' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px !important;
 }
