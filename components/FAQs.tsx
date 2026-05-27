@@ -54,6 +54,7 @@ export default function FAQs() {
         y: 30,
         duration: 0.7,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".faq-header", start: "top 85%", once: true },
       });
 
@@ -63,6 +64,7 @@ export default function FAQs() {
         stagger: 0.08,
         duration: 0.5,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".faq-list", start: "top 80%", once: true },
       });
     },

@@ -15,47 +15,21 @@ export default function Hero() {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reducedMotion) return;
 
-      const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+      // Entrance animation on load — NOT scroll-linked to avoid blank hero
+      gsap
+        .timeline()
+        .from(".hero-headline", { yPercent: 20, opacity: 0, duration: 0.9, ease: "power3.out" })
+        .from(".hero-sub", { opacity: 0, y: 16, duration: 0.7, ease: "power2.out" }, "-=0.5")
+        .from(".hero-cta", { opacity: 0, y: 16, duration: 0.6, ease: "power2.out" }, "-=0.4");
 
-      const tl = gsap.timeline({
-        scrollTrigger: isDesktop
-          ? {
-              trigger: "#inicio",
-              start: "top top",
-              end: "+=120%",
-              scrub: 1,
-              pin: true,
-              markers: false,
-            }
-          : undefined,
-      });
-
-      tl.from(".hero-headline", {
-        yPercent: 30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-      })
-        .from(
-          ".hero-sub",
-          { opacity: 0, y: 20, duration: 0.7, ease: "power2.out" },
-          "-=0.5"
-        )
-        .from(
-          ".hero-cta",
-          { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" },
-          "-=0.4"
-        );
-
-      // On mobile, trigger on scroll instead
-      if (!isDesktop) {
-        gsap.from([".hero-headline", ".hero-sub", ".hero-cta"], {
-          opacity: 0,
-          y: 30,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: { trigger: "#inicio", start: "top 85%", once: true },
+      // Pin section on desktop (no scrub — just scroll-over effect)
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        ScrollTrigger.create({
+          trigger: "#inicio",
+          start: "top top",
+          end: "+=80%",
+          pin: true,
+          pinSpacing: true,
         });
       }
     },
@@ -78,19 +52,19 @@ export default function Hero() {
 
       {/* Background gradient */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-bg via-[#0a1a2e] to-[#071525] pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-[#E0F9FC] via-bg to-bg pointer-events-none"
         aria-hidden="true"
       />
 
       {/* Decorative blur orbs */}
       <div
         className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(255,92,62,0.07) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
       <div
         className="absolute bottom-1/4 right-1/5 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,184,164,0.06) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(2,132,199,0.10) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 

@@ -55,6 +55,7 @@ export default function Contacto() {
         y: 40,
         duration: 0.7,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".contacto-content", start: "top 85%", once: true },
       });
     },

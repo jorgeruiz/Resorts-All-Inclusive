@@ -50,6 +50,7 @@ export default function Testimonios() {
         y: 30,
         duration: 0.7,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".testimonios-header", start: "top 85%", once: true },
       });
 
@@ -59,6 +60,7 @@ export default function Testimonios() {
         stagger: 0.12,
         duration: 0.7,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".testimonios-grid", start: "top 80%", once: true },
       });
     },

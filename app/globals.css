@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Colors ── */
-  --color-bg: #07111D;
-  --color-surface: #0D1A2E;
-  --color-elevated: #122238;
-  --color-border: #1A2E46;
+  /* ── Colors — Light Ocean Theme ── */
+  --color-bg: #F0FBFF;
+  --color-surface: #FFFFFF;
+  --color-elevated: #E0F2FE;
+  --color-border: #BAE6FD;
 
-  --color-coral: #FF5C3E;
-  --color-coral-hover: #E84B2D;
-  --color-gold: #EDA52A;
-  --color-teal: #00B8A4;
+  --color-coral: #0284C7;
+  --color-coral-hover: #0369A1;
+  --color-gold: #D97706;
+  --color-teal: #06B6D4;
 
-  --color-cream: #EDE8DF;
-  --color-cream-dim: #B8B0A5;
-  --color-muted: #5C7A96;
+  --color-cream: #0C2340;
+  --color-cream-dim: #334E68;
+  --color-muted: #7B93AA;
 
   /* ── Fonts ── */
   --font-display: var(--font-syne), sans-serif;
@@ -23,16 +23,16 @@
 
 /* ── Base ── */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
-  background-color: #07111D;
+  background-color: #F0FBFF;
 }
 
 body {
-  background-color: #07111D;
-  color: #EDE8DF;
+  background-color: #F0FBFF;
+  color: #0C2340;
   font-family: var(--font-dm-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,11 +40,11 @@ body {
 
 /* ── Focus rings (WCAG AA) ── */
 *:focus-visible {
-  outline: 2px solid #EDE8DF;
+  outline: 2px solid #0284C7;
   outline-offset: 4px;
 }
 
-/* ── Anchor scroll offset (compensates sticky navbar) ── */
+/* ── Anchor scroll offset ── */
 [id] {
   scroll-margin-top: 80px;
 }
@@ -57,8 +57,8 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-color: #FF5C3E;
-  mix-blend-mode: difference;
+  background-color: #0284C7;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
@@ -71,7 +71,7 @@ body {
   }
 }
 
-/* ── Reduced motion fallback ── */
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -83,9 +83,9 @@ body {
   }
 }
 
-/* ── Select arrow reset ── */
+/* ── Select arrow ── */
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235C7A96' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237B93AA' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px !important;

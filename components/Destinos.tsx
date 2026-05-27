@@ -77,6 +77,7 @@ export default function Destinos() {
         y: 40,
         duration: 0.7,
         ease: "power3.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".destinos-header", start: "top 85%", once: true },
       });
 
@@ -86,6 +87,7 @@ export default function Destinos() {
         stagger: 0.09,
         duration: 0.6,
         ease: "power2.out",
+        immediateRender: false,
         scrollTrigger: { trigger: ".destination-grid", start: "top 80%", once: true },
       });
     },
@@ -118,7 +120,7 @@ export default function Destinos() {
           {destinos.map((destino) => (
             <article
               key={destino.id}
-              className="destination-card group bg-surface border border-border rounded-xl overflow-hidden hover:border-coral/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(255,92,62,0.08)]"
+              className="destination-card group bg-surface border border-border rounded-xl overflow-hidden hover:border-coral/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.12)]"
             >
               {/* Visual */}
               <div
