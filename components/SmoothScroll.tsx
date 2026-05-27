@@ -25,9 +25,15 @@ export default function SmoothScroll() {
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
+    // Refresh ScrollTrigger after Lenis initializes so positions are correct
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", onLoad, { once: true });
+    setTimeout(() => ScrollTrigger.refresh(), 300);
+
     return () => {
       lenis.destroy();
       gsap.ticker.remove(tick);
+      window.removeEventListener("load", onLoad);
     };
   }, []);
 

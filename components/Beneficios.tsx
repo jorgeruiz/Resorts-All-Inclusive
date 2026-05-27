@@ -66,7 +66,6 @@ export default function Beneficios() {
         y: 30,
         duration: 0.7,
         ease: "power3.out",
-        immediateRender: false,
         scrollTrigger: { trigger: ".beneficios-header", start: "top 85%", once: true },
       });
 
@@ -76,7 +75,6 @@ export default function Beneficios() {
         stagger: 0.1,
         duration: 0.6,
         ease: "power3.out",
-        immediateRender: false,
         scrollTrigger: { trigger: ".beneficios-grid", start: "top 80%", once: true },
       });
     },
