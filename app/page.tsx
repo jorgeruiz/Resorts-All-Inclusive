@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Destinos from "@/components/Destinos";
 import Paquetes from "@/components/Paquetes";
+import HotelesCarrusel from "@/components/HotelesCarrusel";
 import Beneficios from "@/components/Beneficios";
 import Testimonios from "@/components/Testimonios";
 import FAQs from "@/components/FAQs";
@@ -14,8 +14,8 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Destinos />
         <Paquetes />
+        <HotelesCarrusel />
         <Beneficios />
         <Testimonios />
         <FAQs />

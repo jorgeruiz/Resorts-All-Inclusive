@@ -1,12 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, useReducedMotion } from "framer-motion";
+import { fadeInUp, staggerContainer, cardItem } from "@/lib/animations";
 
 const destinos = [
   {
@@ -48,31 +44,21 @@ const destinos = [
 ];
 
 export default function Destinos() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reducedMotion) return;
-
-      gsap.from(".destinos-header", {
-        opacity: 0, y: 40, duration: 0.7, ease: "power3.out",
-        scrollTrigger: { trigger: ".destinos-header", start: "top 85%", once: true },
-      });
-
-      gsap.from(".destination-card", {
-        opacity: 0, y: 32, stagger: 0.09, duration: 0.6, ease: "power2.out",
-        scrollTrigger: { trigger: ".destination-grid", start: "top 80%", once: true },
-      });
-    },
-    { scope: sectionRef }
-  );
+  const shouldReduce = useReducedMotion();
+  const headerVariants = fadeInUp(shouldReduce);
+  const itemVariants = cardItem(shouldReduce);
 
   return (
-    <section id="destinos" ref={sectionRef} className="py-24 md:py-32 bg-bg">
+    <section id="destinos" className="py-24 md:py-32 bg-bg">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="destinos-header text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+        >
           <p className="text-teal text-xs font-body font-medium uppercase tracking-widest mb-4">
             Nuestros Destinos
           </p>
@@ -87,16 +73,22 @@ export default function Destinos() {
             Vuelo, hotel, alimentos y diversión — sin sorpresas ni cargos ocultos.
             Encuentra el paquete vacacional todo incluido que tu familia merece.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="destination-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+        >
           {destinos.map((destino) => (
-            <article
+            <motion.article
               key={destino.id}
-              className="destination-card group bg-surface border border-border rounded-xl overflow-hidden hover:border-coral/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.12)]"
+              variants={itemVariants}
+              className="group bg-surface border border-border rounded-xl overflow-hidden hover:border-coral/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(2,132,199,0.12)]"
             >
-              {/* Image */}
               <div className="relative h-48 overflow-hidden bg-elevated">
                 <Image
                   src={destino.imagen}
@@ -109,7 +101,6 @@ export default function Destinos() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               </div>
 
-              {/* Content */}
               <div className="p-6">
                 <h3 className="font-display font-bold text-cream text-2xl mb-2">{destino.nombre}</h3>
                 <p className="font-body text-cream-dim text-sm leading-relaxed mb-5">{destino.descripcion}</p>
@@ -132,12 +123,18 @@ export default function Destinos() {
                   </a>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-14">
+        <motion.div
+          className="text-center mt-14"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+        >
           <p className="font-body text-cream-dim text-sm mb-5">
             ¿No encuentras tu destino? Tenemos más opciones disponibles.
           </p>
@@ -150,7 +147,7 @@ export default function Destinos() {
             </svg>
             Habla con un asesor · 800 228 8377
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

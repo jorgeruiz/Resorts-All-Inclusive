@@ -1,26 +1,32 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
-    if (!cursor) return;
-    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (!cursor || !window.matchMedia("(hover: hover)").matches) return;
 
-    const xTo = gsap.quickTo(cursor, "x", { duration: 0.35, ease: "power3" });
-    const yTo = gsap.quickTo(cursor, "y", { duration: 0.35, ease: "power3" });
+    let x = 0, y = 0, cx = 0, cy = 0;
+    let rafId: number;
 
-    const onMove = (e: MouseEvent) => {
-      xTo(e.clientX);
-      yTo(e.clientY);
-    };
-
+    const onMove = (e: MouseEvent) => { x = e.clientX; y = e.clientY; };
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+
+    const tick = () => {
+      cx += (x - cx) * 0.18;
+      cy += (y - cy) * 0.18;
+      cursor.style.transform = `translate(${cx - 9}px, ${cy - 9}px)`;
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return <div ref={cursorRef} className="cursor" aria-hidden="true" />;

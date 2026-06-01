@@ -17,7 +17,7 @@
   --color-muted: #7B93AA;
 
   /* ── Fonts ── */
-  --font-display: var(--font-syne), sans-serif;
+  --font-display: var(--font-raleway), sans-serif;
   --font-body: var(--font-dm-sans), sans-serif;
 }
 
@@ -80,6 +80,28 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 200ms !important;
     transition-property: color, background-color, opacity !important;
+  }
+}
+
+/* ── Marquee (HotelesCarrusel) ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-left {
+  animation: marquee-left 50s linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right 42s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
   }
 }
 
