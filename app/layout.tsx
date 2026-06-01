@@ -221,6 +221,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'AW-18195520666');`,
           }}
         />
+        {/* Google Ads — Phone conversion tracking */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `gtag('config', 'AW-18195520666/ZpVMCJfrqrccEJq5puRD', {'phone_conversion_number': '800 228 8377'});`,
+          }}
+        />
         {/* Structured data */}
         <script
           type="application/ld+json"
