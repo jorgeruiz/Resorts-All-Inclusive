@@ -3,9 +3,11 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 import { openCallModal } from "@/components/CallModal";
+import { useSessionPhone } from "@/lib/session-phone";
 
 export default function Contacto() {
   const shouldReduce = useReducedMotion();
+  const phone = useSessionPhone();
   const variants = fadeInUp(shouldReduce);
 
   return (
@@ -47,7 +49,7 @@ export default function Contacto() {
             <div className="bg-white border border-border rounded-xl p-8 shadow-sm">
               <p className="font-body text-muted text-xs uppercase tracking-wider mb-4">Llámanos directamente</p>
               <button
-                onClick={() => openCallModal({ titulo: "Llámanos sin costo", message: "El 800 228 8377 es una línea gratuita disponible desde cualquier teléfono en México. Nuestros asesores te atienden en menos de un minuto para resolver todas tus dudas.", section: "contacto" })}
+                onClick={() => openCallModal({ titulo: "Llámanos sin costo", message: `El ${phone.formatted} es una línea gratuita disponible desde cualquier teléfono en México. Nuestros asesores te atienden en menos de un minuto para resolver todas tus dudas.`, section: "contacto" })}
                 className="flex items-center gap-3 text-cream font-display font-bold text-3xl hover:text-coral transition-colors duration-200 mb-5"
               >
                 <span className="text-coral">
@@ -55,7 +57,7 @@ export default function Contacto() {
                     <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z"/>
                   </svg>
                 </span>
-                800 228 8377
+                {phone.formatted}
               </button>
               <div className="flex flex-col gap-1 font-body text-muted text-sm border-t border-border pt-4">
                 <span>Lun–Vie: 10:00–17:00 hrs</span>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSessionPhone } from "@/lib/session-phone";
 
 export type CallModalPayload = {
   titulo?: string;
@@ -23,7 +24,7 @@ function trackCallIntent(section: string) {
   }
   // Google Ads — conversion de llamada
   if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
-    (window as any).gtag("event", "conversion", { send_to: "AW-18195520666" });
+    (window as any).gtag("event", "conversion", { send_to: "AW-18234493762" });
   }
 }
 
@@ -36,6 +37,7 @@ const PhoneIcon = ({ size = 24 }: { size?: number }) => (
 export default function CallModal() {
   const [open, setOpen] = useState(false);
   const [payload, setPayload] = useState<CallModalPayload | null>(null);
+  const phone = useSessionPhone();
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -120,7 +122,7 @@ export default function CallModal() {
             <div className="flex items-center justify-center gap-2 mb-7">
               <span className="text-[#06B6D4]"><PhoneIcon size={16} /></span>
               <span className="font-display font-bold text-[#06B6D4] text-lg tracking-wide">
-                800 228 8377
+                {phone.formatted}
               </span>
               <span className="font-body text-white/40 text-xs">— sin costo</span>
             </div>
@@ -128,7 +130,7 @@ export default function CallModal() {
             {/* Botones */}
             <div className="flex flex-col gap-3">
               <a
-                href="tel:+528002288377"
+                href={phone.tel}
                 onClick={handleConfirm}
                 className="flex items-center justify-center gap-3 bg-[#0284C7] hover:bg-[#0369A1] text-white font-body font-bold text-base py-4 rounded-xl transition-colors duration-200"
               >

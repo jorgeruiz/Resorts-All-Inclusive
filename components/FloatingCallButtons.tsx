@@ -1,13 +1,7 @@
 "use client";
 
 import { openCallModal } from "./CallModal";
-
-const MODAL = {
-  titulo: "¿Listo para planear tu viaje?",
-  message:
-    "Un asesor real te atiende ahora mismo. Llama al 800 228 8377 — línea gratuita desde cualquier teléfono en México — y resuelve todas tus dudas sobre paquetes todo incluido.",
-  section: "floating",
-};
+import { useSessionPhone } from "@/lib/session-phone";
 
 const PhoneIcon = ({ size = 24 }: { size?: number }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -16,12 +10,19 @@ const PhoneIcon = ({ size = 24 }: { size?: number }) => (
 );
 
 export default function FloatingCallButtons() {
+  const phone = useSessionPhone();
+  const modal = {
+    titulo: "¿Listo para planear tu viaje?",
+    message: `Un asesor real te atiende ahora mismo. Llama al ${phone.formatted} — línea gratuita desde cualquier teléfono en México — y resuelve todas tus dudas sobre paquetes todo incluido.`,
+    section: "floating",
+  };
+
   return (
     <>
       {/* Burbuja — solo desktop */}
       <button
-        onClick={() => openCallModal(MODAL)}
-        aria-label="Llamar ahora: 800 228 8377"
+        onClick={() => openCallModal(modal)}
+        aria-label={`Llamar ahora: ${phone.formatted}`}
         className="hidden md:flex fixed bottom-6 right-6 z-50 items-center justify-center w-14 h-14 rounded-full shadow-lg transition-transform duration-200 hover:scale-110"
         style={{ backgroundColor: "#0284C7" }}
       >
@@ -31,7 +32,7 @@ export default function FloatingCallButtons() {
       {/* Barra fija — solo mobile */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-3" style={{ backgroundColor: "#0C2340" }}>
         <button
-          onClick={() => openCallModal(MODAL)}
+          onClick={() => openCallModal(modal)}
           className="flex items-center justify-center gap-3 w-full py-3 rounded-lg font-body font-bold text-white text-base transition-opacity duration-200 hover:opacity-90"
           style={{ backgroundColor: "#0284C7" }}
         >

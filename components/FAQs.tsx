@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp, staggerContainer, cardItem } from "@/lib/animations";
 import { openCallModal } from "@/components/CallModal";
+import { useSessionPhone } from "@/lib/session-phone";
 
 const faqs = [
   {
@@ -12,7 +13,7 @@ const faqs = [
   },
   {
     pregunta: "¿Cómo reservo mi paquete vacacional?",
-    respuesta: "Puedes reservar llamándonos directamente al 800 228 8377, donde un asesor personalizado te orientará, o enviándonos tu solicitud a través del formulario de cotización en esta página. Atendemos de lunes a viernes de 10:00 a 17:00 hrs y sábados y domingos de 10:00 a 14:00 hrs.",
+    respuesta: "PHONE_PLACEHOLDER",
   },
   {
     pregunta: "¿Tienen precios especiales para grupos o familias?",
@@ -35,8 +36,15 @@ const faqs = [
 export default function FAQs() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const shouldReduce = useReducedMotion();
+  const phone = useSessionPhone();
   const headerVariants = fadeInUp(shouldReduce);
   const itemVariants = cardItem(shouldReduce);
+
+  const resolvedFaqs = faqs.map((faq) =>
+    faq.respuesta === "PHONE_PLACEHOLDER"
+      ? { ...faq, respuesta: `Puedes reservar llamándonos directamente al ${phone.formatted}, donde un asesor personalizado te orientará, o enviándonos tu solicitud a través del formulario de cotización en esta página. Atendemos de lunes a viernes de 10:00 a 17:00 hrs y sábados y domingos de 10:00 a 14:00 hrs.` }
+      : faq
+  );
 
   return (
     <section id="faqs" className="py-24 md:py-32 bg-surface border-t border-border">
@@ -64,7 +72,7 @@ export default function FAQs() {
           whileInView="visible"
           viewport={{ once: true, margin: "-10%" }}
         >
-          {faqs.map((faq, i) => (
+          {resolvedFaqs.map((faq, i) => (
             <motion.div key={i} variants={itemVariants} className="bg-bg border border-border rounded-xl overflow-hidden">
               <button
                 className="w-full text-left px-6 py-5 flex items-start justify-between gap-4 cursor-pointer"
@@ -101,13 +109,13 @@ export default function FAQs() {
         >
           <p className="font-body text-muted text-sm mb-4">¿Tienes más preguntas? Nuestros asesores te responden.</p>
           <button
-            onClick={() => openCallModal({ titulo: "Nuestros asesores te responden", message: "¿Tienes dudas sobre fechas, precios, destinos o qué incluye el paquete? Llama sin costo al 800 228 8377 y te resolvemos todo sin compromiso. Atención 7 días a la semana.", section: "faqs" })}
+            onClick={() => openCallModal({ titulo: "Nuestros asesores te responden", message: `¿Tienes dudas sobre fechas, precios, destinos o qué incluye el paquete? Llama sin costo al ${phone.formatted} y te resolvemos todo sin compromiso. Atención 7 días a la semana.`, section: "faqs" })}
             className="inline-flex items-center gap-2 text-coral font-body font-medium hover:text-cream transition-colors duration-200"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
               <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z" />
             </svg>
-            Llamar ahora · 800 228 8377
+            Llamar ahora · {phone.formatted}
           </button>
         </motion.div>
       </div>

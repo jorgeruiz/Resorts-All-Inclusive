@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp, staggerContainer, cardItem } from "@/lib/animations";
+import { useSessionPhone } from "@/lib/session-phone";
 
 const destinos = [
   {
@@ -45,6 +46,7 @@ const destinos = [
 
 export default function Destinos() {
   const shouldReduce = useReducedMotion();
+  const phone = useSessionPhone();
   const headerVariants = fadeInUp(shouldReduce);
   const itemVariants = cardItem(shouldReduce);
 
@@ -112,7 +114,7 @@ export default function Destinos() {
                     Paquetes disponibles
                   </span>
                   <a
-                    href="tel:+528002288377"
+                    href={phone.tel}
                     className="flex items-center gap-1.5 bg-coral hover:bg-coral-hover text-white text-sm font-body font-medium px-4 py-2 rounded-md transition-colors duration-200"
                     aria-label={`Llamar para reservar en ${destino.nombre}`}
                   >
@@ -139,13 +141,13 @@ export default function Destinos() {
             ¿No encuentras tu destino? Tenemos más opciones disponibles.
           </p>
           <a
-            href="tel:+528002288377"
+            href={phone.tel}
             className="inline-flex items-center gap-3 bg-coral hover:bg-coral-hover text-white font-body font-medium text-base px-8 py-4 rounded-md transition-colors duration-200"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
               <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z"/>
             </svg>
-            Habla con un asesor · 800 228 8377
+            Habla con un asesor · {phone.formatted}
           </a>
         </motion.div>
       </div>

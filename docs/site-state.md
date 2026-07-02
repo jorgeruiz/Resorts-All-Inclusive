@@ -52,7 +52,7 @@ Estos items no dependen de desarrollo — requieren activos o configuraciones de
 - [ ] Agregar logo PNG/SVG del cliente (actualmente logotipo es texto "ResortsAI")
 - [ ] Crear páginas `/aviso-de-privacidad` y `/terminos-y-condiciones`
 - [ ] Completar campos `sameAs` del schema JSON-LD con redes sociales del cliente
-- [ ] Confirmar GA4 Measurement ID (actualmente GTM-KPXN2KB2 + Google Ads AW-18195520666 activos; GA4 pendiente)
+- [ ] Confirmar GA4 Measurement ID (actualmente GTM-KPXN2KB2 + Google Ads AW-18234493762 activos; GA4 pendiente)
 - [ ] Verificar propiedad en Google Search Console
 
 ---
@@ -63,7 +63,7 @@ Estos items no dependen de desarrollo — requieren activos o configuraciones de
 **Tracking, modales de llamada, carrusel de hoteles, hero video**
 
 - [x] **GTM integrado** — GTM-KPXN2KB2 en `<head>` (script inline) y `<body>` (noscript iframe)
-- [x] **Google Ads integrado** — AW-18195520666 con tracking de conversión de llamada
+- [x] **Google Ads integrado** — AW-18234493762 con tracking de conversión de llamada
 - [x] **CallModal** — modal contextual de llamada que se abre desde cualquier sección con mensaje personalizado por destino/hotel. Usa custom events (`window.dispatchEvent`) — sin Context ni prop drilling
 - [x] **FloatingCallButtons** — burbuja fija desktop (bottom-right) + barra fija mobile (bottom full-width), siempre visibles en pantalla
 - [x] **HotelesCarrusel** — marquee CSS infinito con ~30 resorts en 2 filas (izquierda/derecha). Gradiente de fade en edges con `maskImage`. Items triplicados para evitar salto en pantallas anchas

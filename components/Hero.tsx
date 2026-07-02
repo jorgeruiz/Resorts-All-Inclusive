@@ -5,6 +5,7 @@ import { useRef, useEffect } from "react";
 import { motion, useMotionValue, useTransform, useReducedMotion } from "framer-motion";
 import { fadeInUp, staggerContainer, cardItem } from "@/lib/animations";
 import { openCallModal } from "@/components/CallModal";
+import { useSessionPhone } from "@/lib/session-phone";
 
 const destinosData = [
   {
@@ -63,6 +64,7 @@ export default function Hero() {
   const shouldReduce    = useReducedMotion();
   const progress        = useMotionValue(0);
   const rawVideoOpacity = useMotionValue(1);
+  const phone           = useSessionPhone();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -125,7 +127,7 @@ export default function Hero() {
             className="inline-flex items-center gap-3 text-white font-body font-medium text-lg px-8 py-4 rounded-md"
             style={{ backgroundColor: "#0284C7" }}
           >
-            <PhoneIcon /> Llama y Reserva · 800 228 8377
+            <PhoneIcon /> Llama y Reserva · {phone.formatted}
           </button>
         </div>
       </section>
@@ -215,7 +217,7 @@ export default function Hero() {
                 className="flex items-center gap-3 text-white font-body font-medium text-lg px-8 py-4 rounded-md transition-opacity hover:opacity-90 duration-200 w-full sm:w-auto justify-center"
                 style={{ backgroundColor: "#0284C7" }}
               >
-                <PhoneIcon /> Llama y Reserva · 800 228 8377
+                <PhoneIcon /> Llama y Reserva · {phone.formatted}
               </button>
               <a
                 href="#destinos"
@@ -333,7 +335,7 @@ export default function Hero() {
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                   <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z" />
                 </svg>
-                Habla con un asesor · 800 228 8377
+                Habla con un asesor · {phone.formatted}
               </button>
             </motion.div>
 
