@@ -224,7 +224,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Ads — Phone conversion tracking */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `gtag('config', 'AW-18234493762/ZpVMCJfrqrccEJq5puRD', {'phone_conversion_number': '800 228 8377'});`,
+            __html: `gtag('config', 'AW-18234493762/G7kXCN3_1skcEMKW8fZD', {'phone_conversion_number': '800 228 8377'});`,
           }}
         />
         {/* Structured data */}
