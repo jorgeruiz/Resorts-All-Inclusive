@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 const PHONES = [
   { raw: "8005125032", formatted: "800 512 5032", tel: "tel:+528005125032" },
   { raw: "8002288377", formatted: "800 228 8377", tel: "tel:+528002288377" },
-  { raw: "8005125059", formatted: "800 512 5059", tel: "tel:+528005125059" },
 ] as const;
 
 const STORAGE_KEY = "rai_phone_idx";
