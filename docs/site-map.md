@@ -1,40 +1,28 @@
-# Mapa del Sitio — Resorts All Inclusive
+# Mapa del sitio — Resorts All Inclusive
 
-**Última actualización:** 27 de mayo de 2026
+> Generado automáticamente desde https://resorts-all-inclusive.vercel.app
 
----
+## Resorts All Inclusive México (/)
 
-## Páginas y secciones
+| id | Sección |
+|---|---|
+| `inicio` | Inicio |
+| `destinos` | Destinos |
+| `paquetes` | Paquetes |
+| `testimonios` | Testimonios |
+| `faqs` | Faqs |
+| `faq-panel-0` | Faq Panel 0 |
+| `faq-panel-1` | Faq Panel 1 |
+| `faq-panel-2` | Faq Panel 2 |
+| `faq-panel-3` | Faq Panel 3 |
+| `faq-panel-4` | Faq Panel 4 |
+| `faq-panel-5` | Faq Panel 5 |
+| `contacto` | Contacto |
 
-### Inicio (`/`)
+## Aviso De Privacidad (/aviso-de-privacidad)
 
-**ID de página:** `home`
+_(sin secciones detectadas)_
 
-| ID de sección | Etiqueta para el cliente | Ancla HTML |
-|--------------|--------------------------|-----------|
-| `home_hero` | Hero principal | `#inicio` |
-| `home_destinos` | Destinos todo incluido | `#destinos` |
-| `home_beneficios` | Por qué elegirnos | *(sin ancla — sección entre destinos y testimonios)* |
-| `home_testimonios` | Testimonios de clientes | `#testimonios` |
-| `home_faqs` | Preguntas frecuentes | `#faqs` |
-| `home_contacto` | Cotiza tu paquete / Contacto | `#contacto` |
-| `home_footer` | Pie de página | *(footer)* |
+## Terminos Y Condiciones (/terminos-y-condiciones)
 
----
-
-## Páginas auxiliares (no construidas, reservadas)
-
-| Slug | ID de página | Estado |
-|------|-------------|--------|
-| `/aviso-de-privacidad` | `privacy` | Pendiente — link en footer activo, página no creada |
-| `/terminos-y-condiciones` | `terms` | Pendiente — link en footer activo, página no creada |
-| `/gracias` | `thank_you` | No requerida actualmente (formulario muestra estado inline) |
-
----
-
-## Notas
-
-- El sitio es single-page. Toda la navegación principal usa anclas HTML, no URLs separadas.
-- Las anclas tienen `scroll-margin-top: 80px` para compensar el navbar sticky de 80px de alto.
-- `home_beneficios` no tiene ancla de navegación — es una sección intermedia de trust/credibilidad entre Destinos y Testimonios.
-- Los links de `/aviso-de-privacidad` y `/terminos-y-condiciones` en el footer llevan a páginas que aún no existen. Deben crearse antes del lanzamiento o redirigir a un documento temporal.
+_(sin secciones detectadas)_
